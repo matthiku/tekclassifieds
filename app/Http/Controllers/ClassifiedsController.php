@@ -65,9 +65,18 @@ class ClassifiedsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreClassifiedRequest $request)
     {
         //
+        $title = $request->input('title');
+        $category_id = $request->input('category_id');
+        $description = $request->input('description');
+        $price = $request->input('price');
+        $condition = $request->input('condition');
+        $main_image = $request->input('main_image');
+        $location = $request->input('location');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
         return 'stored! .... not';
     }
 

@@ -54,8 +54,7 @@
                 {!! Form::select('category_id', $catList, null, ['placeholder' => 'Pick ...', 'required' => 'YES', 'class' => 'form-control'] ) !!} </div>
             </div>
 
-            <br>
-            <h5>Your Details</h5>
+            <h5>Seller Contact Info</h5>
 
             <div class="row form-group">
               <div class="col-md-2">
@@ -86,13 +85,16 @@
               {!! Form::textarea('description', null, array('required' => 'YES', 'class' => 'form-control') ) !!}
             </div>
             <div class="form-group">
-              {!! Form::label( 'image', 'Upload an image' ) !!}
-              {!! Form::file('image', null, array('required' => 'YES') ) !!}
+              {!! Form::label( 'main_image', 'Upload an image' ) !!}
+              {!! Form::file('main_image', null, array('required' => 'YES', 'class' => 'btn btn-default') ) !!}
             </div>
           </div>
 
         </div>
-        {!! Form::submit('Submit') !!}
+
+        <div class="pull-right">
+          {!! Form::submit('Submit', array('class' => 'btn btn-primary')) !!}
+        </div>
 
       {!! Form::close() !!}
 
