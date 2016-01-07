@@ -29,7 +29,7 @@ $factory->define(App\Classified::class, function (Faker\Generator $faker) {
         'description' => $faker->sentence(35),
         'price'       => $faker->randomFloat(2, 150, 550),
         'condition'   => $faker->randomElement(['good','used','new','old']),
-        'main_image'  => $faker->numerify('image#'),
+        'main_image'  => $faker->numerify('image#.jpg'),
         'location'    => $faker->address(),
         'email'       => $faker->email(),
         'phone'       => $faker->phoneNumber(10),

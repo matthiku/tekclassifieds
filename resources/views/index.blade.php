@@ -16,7 +16,7 @@
                 <div class="row">
                 @foreach($classifieds as $ad)
                     <div class="col-md-4 offer">
-                        <img src="/images/{{$ad->main_image}}.jpg">
+                        <img src="/images/{{$ad->main_image}}">
                         <h5><a href="/classifieds/{{ $ad->id }}">{{ $ad->title }}</a></h5>
                         <h6>€ {{ $ad->price }}</h6>
                         <p class="desc">{{ $ad->description }}</p>  

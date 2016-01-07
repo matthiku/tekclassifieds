@@ -11,17 +11,6 @@
 |
 */
 
-Route::get('/', 'ClassifiedsController@index');
-
-
-
-// classifieds routes
-Route::resource('classifieds', 'ClassifiedsController');
-
-// categories routes
-Route::resource('categories', 'CategoriesController');
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +24,23 @@ Route::resource('categories', 'CategoriesController');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+
+    // default route
+    Route::get('/', 'ClassifiedsController@index');
+
+    // classifieds routes
+    Route::resource('classifieds', 'ClassifiedsController');
+    Route::get('classifieds/{classifieds}/delete', 'ClassifiedsController@destroy');
+
+    // categories routes
+    Route::resource('categories', 'CategoriesController');
+
+
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
 });

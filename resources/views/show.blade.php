@@ -16,8 +16,11 @@
             <div class="card-text">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="/images/{{$ad->main_image}}.jpg">
-                        <a href="#" class="btn btn-primary">Add</a>
+                        <img src="/images/{{ $ad->main_image }}">
+                        <br><br>
+                        <a href="#" class="btn btn-success"><i class="fa fa-btn fa-cart-plus"></i> Add</a>
+                        <a class="btn btn-primary" href="{{ url('/classifieds/'.$ad->id.'/edit') }}"><i class="fa fa-btn fa-edit"></i> Edit</a>
+                        <a class="btn btn-danger-outline" href="{{ url('/classifieds/'.$ad->id.'/delete') }}"><i class="fa fa-btn fa-remove"></i> Delete</a>
                     </div>
                     <div class="col-md-8">
                         <h4>Item Description</h4>
@@ -45,12 +48,13 @@
                                 <strong>Phone: </strong>{{ $ad->phone }}
                             </li>
                         </ul>
-                    </div>
-                </div>
-            </div>
+                    </div><!-- col -->
+                </div><!-- row -->
 
-        </div>
+            </div><!-- card-text -->
 
-    </div>    
+        </div><!-- card-block -->
+
+    </div>   <!-- card --> 
     
 @stop

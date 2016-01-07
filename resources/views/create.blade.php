@@ -7,6 +7,18 @@
 
 @section('content')
 
+  @if(Session::has('errors'))
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+  @endif
+
   <div class="card">
 
 
@@ -17,11 +29,7 @@
 
     <div class="card-block">
 
-      {!! Form::open( array('action' => 'ClassifiedsController@store', 'file' => 'true') ) !!}
-      {!! Form::macro('currency', function() {
-              return '<input type="number" step="0.01" min="0" class="form-control" required>';
-          })
-       !!}
+      {!! Form::open( array('action' => 'ClassifiedsController@store', 'files' => 'true') ) !!}
 
         <div class="row">
 
@@ -47,7 +55,7 @@
               <div class="col-md-2">
                 {!! Form::label( 'price', 'Price' ) !!} </div>
               <div class="col-md-4">
-                {!! Form::currency('price' ) !!} </div>
+                {!! Form::number('price', 0.05, ['step'=>"0.05", 'min'=>"0.05", 'class'=>"form-control", 'required' => 'YES'] ) !!} </div>
               <div class="col-md-2">
                 {!! Form::label( 'category_id', 'Category' ) !!} </div>
               <div class="col-md-4">
@@ -85,7 +93,7 @@
               {!! Form::textarea('description', null, array('required' => 'YES', 'class' => 'form-control') ) !!}
             </div>
             <div class="form-group">
-              {!! Form::label( 'main_image', 'Upload an image' ) !!}
+              {!! Form::label( 'main_image', 'Upload an image', ['class'=>'file'] ) !!}
               {!! Form::file('main_image', null, array('required' => 'YES', 'class' => 'btn btn-default') ) !!}
             </div>
           </div>
