@@ -20,8 +20,9 @@
   <body>
 
 <?php #dd( Route::current()->getName() ) ?>
+<?php #dd( Request::path() ) ?>
 
-    <nav class="navbar navbar-dark bg-inverse">
+    <nav class="tek-nav navbar navbar-dark bg-inverse">
 
       <a class="navbar-brand" href="#">TekClassifieds</a>
 
@@ -83,24 +84,53 @@
 
       <div class="row">
 
+
+        <!-- 
+              sidebar 
+          -->
         <div class="col-md-2">
           @section('sidebar')
-            The Sidebar....
+            <div class="list-group">
+              <a href="/classifieds" class="list-group-item {{ Request::is('classifieds') ? 'active' : '' }}">
+                All Categories
+              </a>
+              @foreach($categories as $category)
+                <a href="/categories/{{$category->id}}" 
+                   class="list-group-item {{ Request::is('categories/'.$category->id) ? 'active' : '' }}">{{$category->name}}s
+                </a>
+              @endforeach
+            </div>
+            <br>
+            <form class="form-inline" method="GET" role="form" action="{{ url('classifieds/search') }}">
+              {!! csrf_field() !!}
+              <div class="form-group">
+                <input type="text" name="searchString" class="form-control-sm search-input" id="searchString" placeholder="search listings...">
+              </div>
+              <!-- <button type="submit" class="btn btn-sm btn-primary search-btn">Search</button> -->
+            </form>
           @show
         </div>
 
+
+        <!--
+             main page content 
+          -->
         <div class="col-md-10">
 
-          @if( isset($status) )
+          <!-- show status pane if needed -->
+          @if( Session::has('status') )
             <div class="alert alert-info">
-              {{ $status }}
+              {{ Session::get('status') }}
             </div>
           @endif
 
           @yield('content')
         </div>
 
-      </div>
+
+
+
+      </div><!-- row -->
 
     </div><!-- /.container -->
 

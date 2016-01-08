@@ -31,13 +31,17 @@ Route::group(['middleware' => ['web']], function () {
 
     // classifieds routes
     Route::resource('classifieds', 'ClassifiedsController');
+
+    Route::get('classifieds/search', 'ClassifiedsController@search');
     Route::get('classifieds/{classifieds}/delete', 'ClassifiedsController@destroy');
+    
 
     // categories routes
     Route::resource('categories', 'CategoriesController');
 
-
 });
+
+
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();

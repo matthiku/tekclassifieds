@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Category;
+
+
 class CategoriesController extends Controller
 {
     /**
@@ -48,7 +51,12 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        // get all classifieds of this category
+        $cat = Category::find($id);
+        $classifieds = $cat->classifieds;
+        $category = $cat->name;
+
+        return view('index', compact('classifieds', 'category'));
     }
 
     /**

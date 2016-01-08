@@ -7,10 +7,13 @@
 
 @section('content')
     <div class="card text-xs-center">
-        <h3 class="card-header">Latest Listings</h3>
+        @if( isset($category) )
+            <h3 class="card-header">{{ $category }} Listings</h3>
+        @else
+            <h3 class="card-header">All Listings</h3>
+        @endif
 
         <div class="card-block">
-            <h4 class="card-title">Special Offers</h4>
 
             <div class="card-text">
                 <div class="row">

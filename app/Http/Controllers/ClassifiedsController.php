@@ -137,6 +137,7 @@ class ClassifiedsController extends Controller
 
 
 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -147,6 +148,10 @@ class ClassifiedsController extends Controller
     {
         // get this item
         $ad = Classified::find($id);
+
+        if (Auth::user()->id <> $ad->owner_id) {
+            return back()->with('status', 'You cannot edit as you are not the owner of this item.');
+        }
 
         // get list of categories
         $categories = Category::all();
@@ -164,6 +169,7 @@ class ClassifiedsController extends Controller
 
         return view('edit', compact('ad','catList', 'condList'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -213,7 +219,17 @@ class ClassifiedsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // get this item
+        $ad = Classified::find($id);
+
+        if (Auth::user()->id <> $ad->owner_id) {
+            return back()->with('status', 'You cannot delete this item as you are not the owner.');
+        }
+
+        $ad->delete();
+
+        return redirect('classifieds')
+            ->with('status', 'Listing was deleted.');
     }
 
 

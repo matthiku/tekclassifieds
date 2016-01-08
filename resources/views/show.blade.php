@@ -19,8 +19,10 @@
                         <img src="/images/{{ $ad->main_image }}">
                         <br><br>
                         <a href="#" class="btn btn-success"><i class="fa fa-btn fa-cart-plus"></i> Add</a>
-                        <a class="btn btn-primary" href="{{ url('/classifieds/'.$ad->id.'/edit') }}"><i class="fa fa-btn fa-edit"></i> Edit</a>
-                        <a class="btn btn-danger-outline" href="{{ url('/classifieds/'.$ad->id.'/delete') }}"><i class="fa fa-btn fa-remove"></i> Delete</a>
+                        @if(!Auth::guest() && Auth::user()->id == $ad->owner_id)
+                            <a class="btn btn-primary" href="{{ url('/classifieds/'.$ad->id.'/edit') }}"><i class="fa fa-btn fa-edit"></i> Edit</a>
+                            <a class="btn btn-danger-outline" href="{{ url('/classifieds/'.$ad->id.'/delete') }}"><i class="fa fa-btn fa-remove"></i> Delete</a>
+                        @endif
                     </div>
                     <div class="col-md-8">
                         <h4>Item Description</h4>

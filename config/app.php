@@ -158,6 +158,8 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        App\Providers\ComposerServiceProvider::class,
+
     ],
 
     /*

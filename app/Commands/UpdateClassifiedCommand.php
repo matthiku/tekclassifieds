@@ -48,7 +48,7 @@ class UpdateClassifiedCommand extends Command implements SelfHandling
      */
     public function handle() 
     {
-        return Classified::where('id', $this->$id)
+        return Classified::where('id', $this->id)
             ->update([
                 'title'       => $this->title,
                 'category_id' => $this->category_id,
